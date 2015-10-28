@@ -31,3 +31,6 @@ Repository Contents
 
 License Information
 -------------------
+This product is open source!
+
+Please use, reuse, and modify these files as you see fit. Please maintain attribution to Protocentral and release anything derivative under the same license.
