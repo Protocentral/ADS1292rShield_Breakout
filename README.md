@@ -11,6 +11,7 @@ Another interesting feature of this shield is that you can also measure the resp
 
 
 Features:
+----------
 * ADS1292R Analog Front End IC
 * Onboard 3.3V voltage regulator for low noise
 * Onboard logic level transalators for Arduino interface
