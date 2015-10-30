@@ -33,7 +33,7 @@ Connecting the shield to your Arduino
 -------------------------------------
  Connect the ECG/Respiration shield to the Arduino by stacking it on top of your Arduino. This shield uses the SPI interface  to communicate with the Arduino. Since this includes the ICSP header, which is used on newer Arduinos for SPI communication,  this shield is also compatible newer Arduino boards such as the Arduino Yun and Due.
  
- [![ConnectingShield](http://www.protocentral.com/img/cms/ads1292r_shield/image002.png) 
+ ![ConnectingShield](http://www.protocentral.com/img/cms/ads1292r_shield/image002.png) 
  
 Installing the Arduino libraries 
 ---------------------------------
@@ -70,6 +70,16 @@ The filtered ECG waveform (generated from an ECG simulator) from the output shou
 
 ![FilteredECG](http://www.protocentral.com/img/cms/ads1292r_shield/Ecg_BB_plot.png)
 
+Connecting the ECG Electrodes
+------------------------------
+ A 3-electrode cable along with a standard stereo jack is provided along with the shield to connect the electrodes to the     shield. The electrode input connector is highlighted in the below picture.
+ 
+ ![ConnectingTheElectrodes](http://www.protocentral.com/img/cms/ads1292r_shield/image006.png)
+ 
+ The other side of the electrode connector would connect to snap-on electrodes attached to the body. For testing purposes,    you can use an ECG simulator to provide inputs to the board. 
+
+ Warning:
+ When connecting the electodes to the body, it is safer to disconnect the mains power source to the Arduino. For example, if  you are using the Arduino along with a laptop, disconnecting the battery charger from the laptop would be a safe option.
 
 License Information
 -------------------
