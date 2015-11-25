@@ -83,7 +83,7 @@ Connecting the ECG Electrodes
  
 Placing the Electrodes on the body
 ---------------------------------
-![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/4/8/3548.jpg)
+![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/5/1/3551.jpg)
 
 License Information
 -------------------
