@@ -81,7 +81,7 @@ Connecting the ECG Electrodes
  Warning:
  When connecting the electodes to the body, it is safer to disconnect the mains power source to the Arduino. For example, if  you are using the Arduino along with a laptop, disconnecting the battery charger from the laptop would be a safe option.
  
-Wearing the Electrodes on the body
+Placing the Electrodes on the body
 ---------------------------------
 ![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/4/8/3548.jpg)
 
