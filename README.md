@@ -4,6 +4,9 @@ ADS1292R ECG/RESPIRATION SHIELD
 [![ECG](https://www.protocentral.com/3059-tm_thickbox_default/ads1292r-ecgrespiration-shield-v2.jpg)  
 *ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)*](https://www.protocentral.com/arduino-shields/818-ads1292r-ecgrespiration-shield-v2.html)
 
+[![bob](https://www.protocentral.com/2729-tm_thickbox_default/ads1292r-ecgrespiration-breakout-board.jpg)  
+*ADS1292R ECG/Respiration Breakout for Arduino- v2 (PC-4116)*](https://www.protocentral.com/biomedical/783-ads1292r-ecgrespiration-breakout-board.html?search_query=ads12&results=3)
+
 Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. 
 We now include the electrodes and cable also with the shield
 Just plug it into an Arduino and you're ready to go. The 3.5 mm circular connector provides an easy way to connect electodes to the shield. The other end of this cable has snaps for standard ECG electrodes. We also include a pakc of 10 disposable EG electrodes. It accepts two ECG electrodes and one Driven Right Leg (DRL) electrode for common mode noise reduction. 
@@ -34,6 +37,20 @@ Connecting the shield to your Arduino
  Connect the ECG/Respiration shield to the Arduino by stacking it on top of your Arduino. This shield uses the SPI interface  to communicate with the Arduino. Since this includes the ICSP header, which is used on newer Arduinos for SPI communication,  this shield is also compatible newer Arduino boards such as the Arduino Yun and Due.
  
  ![ConnectingShield](http://www.protocentral.com/img/cms/ads1292r_shield/image002.png) 
+ 
+ Wiring the Breakout to your Arduino
+ ---------------------------------------
+|ads1292r pin labl| Arduino Connection   |Pin Function      |
+|-----------------|:--------------------:|-----------------:|
+| VDD             | +5V                  |  Supply voltage  |             
+| PWDN/RESET      | D4                   |  Reset           |
+| START           | D5                   |  Start Input     |
+| DRDY            | D6                   |  Data Ready Outpt|
+| CS              | D7                   |  Chip Select     |
+| MOSI            | D11                  |  Slave In        |
+| MISO            | D12                  |  Slave Out       |
+| SCK             | D13                  |  Serial Clock    |
+| GND             | Gnd                  |  Gnd             |
  
 Installing the Arduino libraries 
 ---------------------------------
