@@ -39,18 +39,19 @@ Connecting the shield to your Arduino
  ![ConnectingShield](http://www.protocentral.com/img/cms/ads1292r_shield/image002.png) 
  
  Wiring the Breakout to your Arduino
- ---------------------------------------
-|ads1292r pin labl| Arduino Connection   |Pin Function      |
-|-----------------|:--------------------:|-----------------:|
-| VDD             | +5V                  |  Supply voltage  |             
-| PWDN/RESET      | D4                   |  Reset           |
-| START           | D5                   |  Start Input     |
-| DRDY            | D6                   |  Data Ready Outpt|
-| CS              | D7                   |  Chip Select     |
-| MOSI            | D11                  |  Slave In        |
-| MISO            | D12                  |  Slave Out       |
-| SCK             | D13                  |  Serial Clock    |
-| GND             | Gnd                  |  Gnd             |
+ -----------------------------------
+ 
+|ads1292r pin label| Arduino Connection   |Pin Function      |
+|----------------- |:--------------------:|-----------------:|
+| VDD              | +5V                  |  Supply voltage  |             
+| PWDN/RESET       | D4                   |  Reset           |
+| START            | D5                   |  Start Input     |
+| DRDY             | D6                   |  Data Ready Outpt|
+| CS               | D7                   |  Chip Select     |
+| MOSI             | D11                  |  Slave In        |
+| MISO             | D12                  |  Slave Out       |
+| SCK              | D13                  |  Serial Clock    |
+| GND              | Gnd                  |  Gnd             |
  
 Installing the Arduino libraries 
 ---------------------------------
