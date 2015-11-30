@@ -38,8 +38,8 @@ Connecting the shield to your Arduino
  
  ![ConnectingShield](http://www.protocentral.com/img/cms/ads1292r_shield/image002.png) 
  
- Wiring the Breakout to your Arduino
- -----------------------------------
+Wiring the Breakout to your Arduino
+------------------------------------
  
 |ads1292r pin label| Arduino Connection   |Pin Function      |
 |----------------- |:--------------------:|-----------------:|
