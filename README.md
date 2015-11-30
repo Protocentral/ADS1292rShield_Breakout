@@ -40,6 +40,7 @@ Connecting the shield to your Arduino
  
 Wiring the Breakout to your Arduino
 ------------------------------------
+ If you have bought the breakout the connection with the Arduino board is as follows:
  
 |ads1292r pin label| Arduino Connection   |Pin Function      |
 |----------------- |:--------------------:|-----------------:|
