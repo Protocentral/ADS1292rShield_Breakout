@@ -99,13 +99,22 @@ Using Processing
 
 ### 1.Download Processing for your operating system
 
- First, download the processing ide version 2.2.1 from the link "https://processing.org/download/?processing".
+ First, download the processing ide version 2.2.1 from the link
+
+* On Windows: 
+	32-bit "http://download.processing.org/processing-2.2.1-windows32.zip"
+	64-bit "http://download.processing.org/processing-2.2.1-windows64.zip"
+* On MAC: 
+	"http://download.processing.org/processing-2.2.1-macosx.zip"
+* On Linux:
+	32-bit "http://download.processing.org/processing-2.2.1-linux32.tgz"
+	64-bit "http://download.processing.org/processing-2.2.1-linux64.tgz"
 
  Once it's finished downloading, unzip it and place the Processing .app or .exe where you typically place your applications or programs.
 
 ### 2. Download the ces_view_ecg Processing code
 
- a. [Download the necessary files & directories]( https://github.com/Protocentral/ADS1292rShield_Breakout.zip) or clone to your desktop.
+ a. Download the necessary files & directories or clone to your desktop from github.
 
  b. Unzip the download. It should be called ads1292r_shield after unzip/extract it.
 
@@ -133,9 +142,13 @@ Using Processing
 
  d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown.
 
+![Processing Sketch](Processing\Final Output\1.Port Selection.png)
+
  e. Click "START" button after it is enabled.
 
  f. The ECG wave is generated with the values obtained from the ADS1292rShield/Breakout Board.
+
+![Processing Sketch](Processing\Final Output\2.ECG Generated.png)
 
 Connecting the ECG Electrodes
 ------------------------------
