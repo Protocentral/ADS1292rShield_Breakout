@@ -139,7 +139,7 @@ Using Processing
 
  d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown.
 
-![Processing Sketch](Processing\Final-Output\Port-Selection.png)
+![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
 
  e. Click "START" button after it is enabled.
 
