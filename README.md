@@ -137,13 +137,13 @@ Using Processing
 
  c. Click the "run" button on the top left of the IDE, and the code should run! If it does not, make sure you installed your libraries correctly and that are using the version 2.2.1 of Processing.
 
- d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown.
+ d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown as shown in the below figure.
 
 ![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/Port-Selection.png)
 
  e. Click "START" button after it is enabled.
 
- f. The ECG wave is generated with the values obtained from the ADS1292rShield/Breakout Board.
+ f. The ECG wave is generated with the values obtained from the ADS1292rShield/Breakout Board as shown below.
 
 ![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
 
