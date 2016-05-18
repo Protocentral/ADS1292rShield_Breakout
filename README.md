@@ -101,11 +101,11 @@ Using Processing
 
  First, download the processing ide version 2.2.1 from the link
 
-* Windows 32-bit: "http://download.processing.org/processing-2.2.1-windows32.zip"
-* Windows 64-bit: "http://download.processing.org/processing-2.2.1-windows64.zip"
 * MAC: "http://download.processing.org/processing-2.2.1-macosx.zip"
 * Linux 32-bit: "http://download.processing.org/processing-2.2.1-linux32.tgz"
 * Linux 64-bit: "http://download.processing.org/processing-2.2.1-linux64.tgz"
+* Windows 32-bit: "http://download.processing.org/processing-2.2.1-windows32.zip"
+* Windows 64-bit: "http://download.processing.org/processing-2.2.1-windows64.zip"
 
  Once it's finished downloading, unzip it and place the Processing .app or .exe where you typically place your applications or programs.
 
