@@ -139,13 +139,13 @@ Using Processing
 
  d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown.
 
-![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
+![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/Port-Selection.png)
 
  e. Click "START" button after it is enabled.
 
  f. The ECG wave is generated with the values obtained from the ADS1292rShield/Breakout Board.
 
-![Processing Sketch](Processing\Final-Output\ECG-Generated.png)
+![Processing Sketch](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
 
 Connecting the ECG Electrodes
 ------------------------------
