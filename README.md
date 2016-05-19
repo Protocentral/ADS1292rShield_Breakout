@@ -71,7 +71,7 @@ This sketch is designed to read the data from the electrodes in real-time and st
 
 Using Processing
 ----------------
- Processing is an open source creative coding framework based on Java. If you are familiar with the Arduino environment, the Processing IDE is nearly identical. 
+ Processing is a data visualisation software, in existence since 2001, used by artists and scientists alike. Its an open source coding framework based on Java. If you are familiar with the Arduino environment, the Processing IDE is similar and you wont have much of a learning curve to climb!
 
 **Note:** The code for ECG is executed using processing ide version 2.2.1 only.
  
@@ -79,13 +79,13 @@ Using Processing
 
 ### 1.Download Processing for your operating system
 
- First, download the processing ide version 2.2.1 from the link
+ Download the processing ide version 2.2.1 from the link
 
-* MAC: "http://download.processing.org/processing-2.2.1-macosx.zip"
-* Linux 32-bit: "http://download.processing.org/processing-2.2.1-linux32.tgz"
-* Linux 64-bit: "http://download.processing.org/processing-2.2.1-linux64.tgz"
-* Windows 32-bit: "http://download.processing.org/processing-2.2.1-windows32.zip"
-* Windows 64-bit: "http://download.processing.org/processing-2.2.1-windows64.zip"
+* MAC (http://download.processing.org/processing-2.2.1-macosx.zip)
+* Linux 32-bit (http://download.processing.org/processing-2.2.1-linux32.tgz)
+* Linux 64-bit (http://download.processing.org/processing-2.2.1-linux64.tgz)
+* Windows 32-bit (http://download.processing.org/processing-2.2.1-windows32.zip)
+* Windows 64-bit (http://download.processing.org/processing-2.2.1-windows64.zip)
 
  Once it's finished downloading, unzip it and place the Processing .app or .exe where you typically place your applications or programs.
 
