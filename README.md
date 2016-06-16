@@ -92,20 +92,18 @@ The filtered ECG waveform (generated from an ECG simulator) from the output shou
 Using Processing - Data Visualisation Software (New!)
 -----------------------------------------------------
  Processing is a data visualisation software, in existence since 2001, used by artists and scientists alike. Its an open source coding framework based on Java. If you are familiar with the Arduino environment, the Processing IDE is similar and you wont have much of a learning curve to climb!
-
-**Note:** The code for ECG is executed using processing ide version 2.2.1 only.
  
  The following are the steps to run the code:
 
 ### 1.Download Processing for your operating system
 
- Download the processing ide version 2.2.1 from the link
+ Download the processing ide latest version from the link
 
-* [MAC] (http://download.processing.org/processing-2.2.1-macosx.zip)
-* [Linux 32-bit] (http://download.processing.org/processing-2.2.1-linux32.tgz)
-* [Linux 64-bit] (http://download.processing.org/processing-2.2.1-linux64.tgz)
-* [Windows 32-bit] (http://download.processing.org/processing-2.2.1-windows32.zip)
-* [Windows 64-bit] (http://download.processing.org/processing-2.2.1-windows64.zip)
+* [MAC] (http://download.processing.org/processing-3.1.1-macosx.zip)
+* [Linux 32-bit] (http://download.processing.org/processing-3.1.1-linux32.tgz)
+* [Linux 64-bit] (http://download.processing.org/processing-3.1.1-linux64.tgz)
+* [Windows 32-bit] (http://download.processing.org/processing-3.1.1-windows32.zip)
+* [Windows 64-bit] (http://download.processing.org/processing-3.1.1-windows64.zip)
 
  Once downloaded, unzip the archive and install the app as per your OS.
 
@@ -125,7 +123,7 @@ Using Processing - Data Visualisation Software (New!)
 
  d. From the above mentioned "ads1292r_shield" directory Copy/Move the contents of the ADS1292rShield_Breakout/Processing/ces_view_ecg folder to the Processing sketchbook directory which is also mentioned above (Locate the Processing sketchbook)
 
- e. Finally, copy the controlP5 & gwoptics directories from ADS1292rShield_Breakout\Processing\libraries and paste them into the libraries directory of your Processing sketchbook.
+ e. Finally, copy the controlP5 directories from ADS1292rShield_Breakout\Processing\libraries and paste them into the libraries directory of your Processing sketchbook.
 
  f. You are all set now to get your first ECG reading visualised from the ADS1292R shield!
 
@@ -135,7 +133,7 @@ Using Processing - Data Visualisation Software (New!)
 
  b. Double-click any of the .pde files in the ces_view_ecg directory to open all of the ecg code in the Processing IDE.
 
- c. If everything done so far was good, clicking the "run" button on the top left corner of the IDE, should run the code! If it does not, make sure you installed your libraries correctly and are using version 2.2.1 of Processing.
+ c. If everything done so far was good, clicking the "run" button on the top left corner of the IDE, should run the code! If it does not, make sure you installed your libraries correctly.
 
  d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown as shown in the figure below
 
