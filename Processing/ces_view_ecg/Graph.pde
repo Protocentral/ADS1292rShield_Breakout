@@ -10,12 +10,20 @@ class Graph
   int     xPos, yPos;            // location of the top left corner of the graph  
   int     Width, Height;         // Width and height of the graph
 
+
   color   GraphColor;
   color   BackgroundColor=color(0);  
   color   StrokeColor=color(180);     
 
+  String  Title="Title";          // Default titles
+  String  xLabel="x - Label";
+  String  yLabel="y - Label";
+
   float   yMax=1024, yMin=0;      // Default axis dimensions
   float   xMax=10, xMin=0;
+  float   yMaxRight=1024, yMinRight=0;
+
+  PFont   Font;                   // Selected font used for text 
 
   Graph(int x, int y, int w, int h) {  // The main declaration function
     xPos = x;

@@ -108,6 +108,7 @@ int startTime = 0;
 int pSize = 1000;
 float[] xdata = new float[pSize];
 float[] ydata = new float[pSize];
+float[] bpmArray = new float[pSize];
 int arrayIndex = 1;
 Graph g;
 float time =0;
@@ -348,15 +349,17 @@ void ecsProcessData(char rxch)
         time = time+1;
         xdata[arrayIndex] = time;
         ydata[arrayIndex] = (float)receivedVoltage;
+        bpmArray[arrayIndex] = (float)receivedVoltage;
         arrayIndex++;
 
         if (arrayIndex == pSize)
         {  
           arrayIndex = 0;
           time = 0;
+          
           if (start)
           {
-            hr.bpmCalc(ydata);
+            hr.bpmCalc(bpmArray);
           }
           else
           {
@@ -547,7 +550,9 @@ void setLock(Controller theController, boolean theValue) {
 
 
 void setChartSettings() {
-  
+  g.xLabel="";
+  g.yLabel="";
+  g.Title="";  
   g.xDiv=10;  
   g.xMax=pSize; 
   g.xMin=0;  
