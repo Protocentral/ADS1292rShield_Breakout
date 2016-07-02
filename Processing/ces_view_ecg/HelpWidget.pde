@@ -28,7 +28,7 @@ class HelpWidget {
     strokeWeight(1);
     stroke(color(0, 5, 11));
     fill(color(0, 5, 11));
-    rect(x + padding, height-h + padding, width - padding*5 - 128, h - padding *2);
+    rect(x + padding, height-h + padding, width - padding*23, h - padding *2);
 
     textSize(14);
     fill(255);
@@ -36,7 +36,7 @@ class HelpWidget {
     text(currentOutput, padding*2, height - h + padding + 4);
 
     //draw LOGO
-    image(logo, width - (128+padding*2), height - 36,100,30);
+  //  image(logo, width - (128+padding*2), height - 36,100,30);
 
     popStyle();
   }

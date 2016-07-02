@@ -1,6 +1,7 @@
-import javax.swing.JFileChooser;
-import controlP5.*;
 import processing.serial.*;
+import g4p_controls.*;
+import java.awt.*;
+import javax.swing.JFileChooser;
 
 import java.math.*;
 import java.io.FileWriter;
@@ -60,10 +61,6 @@ char DataRcvPacket2[] = new char[1000];
 
 /************** ControlP5 Related Variables **********************/
 
-ControlP5 controlP5;
-DropdownList portList;
-Textlabel graphTitle, bpm1;
-Button recordButton, finishRecord, startButton, stopButton, closeButton;
 int colorValue;
 HelpWidget helpWidget;
 HeaderButton headerButton;
@@ -71,8 +68,9 @@ boolean visibility=false;
 
 /************** Graph Related Variables **********************/
 
-double max, min;
-double receivedVoltage=20;
+double maxe, mine, maxr, minr;
+double ecgVoltage=20;
+double respirationVoltage=20;
 
 /************** File Related Variables **********************/
 
@@ -101,181 +99,99 @@ PImage logo;
 
 /************** General Variables **********************/
 
-boolean start = false, Serialevent = false;
+boolean startPlot = false, Serialevent = false;
 String msgs;
 int startTime = 0;
 
 int pSize = 1000;
 float[] xdata = new float[pSize];
-float[] ydata = new float[pSize];
+float[] ecgdata = new float[pSize];
+float[] respdata = new float[pSize];
 float[] bpmArray = new float[pSize];
+float[] minArray = new float[pSize];
+float[] maxArray = new float[pSize];
 int arrayIndex = 1;
-Graph g;
-float time =0;
+Graph g, g1;
+float time = 0;
 BPM hr;
 
-/*********************************************** Set Up Function *********************************************************/
+String selectedPort;
 
-void setup()
-{
-  size(1200, 700);
-  frameRate(100);
-  //  fullScreen();
-  smooth();
+public void setup() {
+  size(800, 480, JAVA2D);
+  // fullScreen();
+  createGUI();
+  customGUI();
 
-  /************** Adding Elements to the ControlP5 **********************/
-
-  controlP5 = new ControlP5(this);
-  PFont p = createFont("Arial", 18); 
-  controlP5.setFont(p);
-
-  startButton = controlP5.addButton("START")
-    .setValue(255)
-    .setPosition(250, 7)
-    .setSize(100, 35);
-
-  stopButton = controlP5.addButton("STOP")
-    .setValue(255)
-    .setPosition(250, 7)
-    .setSize(100, 35)
-    .setVisible(false);
-
-  closeButton = controlP5.addButton("CLOSE")
-    .setValue(255)
-    .setPosition(500, 7)
-    .setSize(100, 35);                     
-
-  graphTitle = controlP5.addTextlabel("Graph1")
-    .setText("Electrocardiogram")
-    .setPosition(width/2-150, 65)
-    .setColorValue(255)
-    .setFont(createFont("Arial", 25));          
-
-  recordButton = controlP5.addButton("RECORD")
-    .setValue(255)
-    .setPosition(380, 7)
-    .setSize(100, 35);
-
-  finishRecord = controlP5.addButton("DONE")
-    .setValue(255)
-    .setPosition(380, 7)
-    .setSize(100, 35)
-    .setVisible(false);
-
-  bpm1 = controlP5.addTextlabel("BPM")
-    .setPosition(width-300, 105)
-    .setColorValue(255)
-    .setFont(createFont("Arial", 105));                        
-
-  controlP5.setColorBackground(color(23, 172, 6));
-  controlP5.setColorActive(color(53, 249, 31));
-
-  portList = controlP5.addDropdownList("Select_Port")
-    .setLabel("SELECT PORT")
-    .setPosition(5, 7)
-    .setItemHeight(35)
-    .setBarHeight(35)
-    .close();
-
-  colorValue = controlP5.getController("RECORD").getColor().getBackground();
-
-  setLock(controlP5.getController("START"), true);
-  setLock(controlP5.getController("STOP"), true);
-  setLock(controlP5.getController("RECORD"), true);            
-
-  /************** Creating Graph Class Objects **********************/
-
-
-  date = new Date();
-  logo = loadImage("logo.png");
-  customize(portList);
   headerButton = new HeaderButton(0, 0, width, 50);
 
   helpWidget = new HelpWidget(0, height - 30, width, 40); 
-  g = new Graph(30, 250, width-20, 400);
+  g = new Graph(10, 100, width-20, 100);
+  g1 = new Graph(10, 300, width-20, 100);
 
   setChartSettings();
   for (int i=0; i<pSize; i++) 
   {
     time = time + 1;
     xdata[i]=time;
-    ydata[i] = 0;
+    ecgdata[i] = 0;
   }
   time = 0;
   g.GraphColor = color(0, 255, 0);
+  g1.GraphColor = color(0, 255, 0);
   hr = new BPM();
 }
 
-/*********************************************** Draw Function *********************************************************/
+public void draw() {
+  background(0);
 
-void draw()
-{
   while (portSelected == true && serialSet == false)
   {
-    startSerial(comList);
+    startSerial();
   }
-  background(0);
-  headerButton.draw();
-  helpWidget.draw();
-  if (start)
+  if ((maxe != g.yMax))
   {
-    g.LineGraph(xdata, ydata);
+    g.yMax = (int)maxe+1;
   }
-  else
+  if ((maxr != g.yMax))
+  {
+    g1.yMax = (int)maxr+1;
+  }
+  if ((mine != g.yMin))
+  {
+    g.yMin = (int)mine;
+  }
+  if ((mine != g.yMin))
+  {
+    g1.yMin = (int)minr;
+  }
+  if (startPlot)
+  {
+    g.LineGraph(xdata, ecgdata);
+    g1.LineGraph(xdata, respdata);
+  } else
   {
     bpm1.setText("0");
   }
-}
-
-/*********************************************** Dropdown & graph Function *********************************************************/
-
-void customize(DropdownList ddl)
-{
-  comList = port.list();
-  if (comList.length == 0)
-  {
-    output("No Ports are Availabe");
-  } else
-  {
-    portList.setSize(200, (comList.length * 25)+90);
-    for (int j=0; j<comList.length; j++)
-    {
-      ddl.addItem(comList[j], j); 
-      ddl.setColorBackground(color(23, 172, 6));
-      ddl.setColorActive(color(0, 0, 0));
-    }
-  }
-}
-
-/*********************************************** ControlP5 Event Function *********************************************************/
-
-public void controlEvent(ControlEvent theEvent)
-{
-  if (theEvent.isGroup())
-  {
-    float S= theEvent.group().getValue();
-    Ss = int(S);
-    portSelected = true;
-  }
+  headerButton.draw();
+  helpWidget.draw();
 }
 
 /*********************************************** Opening Port Function ******************************************* **************/
 
-void startSerial(String[] theport)
+void startSerial()
 {
   try
   {
-    port = new Serial(this, theport[Ss], 57600);
+    port = new Serial(this, selectedPort, 57600);
     port.clear();
     serialSet = true;
-    msgs = "Port "+comList[Ss]+" is opened Click Start button";
-    portName = "\\"+comList[Ss]+".txt";
-    setLock(controlP5.getController("START"), false);
-    setLock(controlP5.getController("Select_Port"), true);
+    msgs = "Port "+selectedPort+" is opened Click Start button";
+    portName = "\\"+selectedPort+".txt";
   }
   catch(Exception e)
   {
-    msgs = "Port "+comList[Ss]+" is busy";
+    msgs = "Port "+selectedPort+" is busy";
     showMessageDialog(null, "Port is busy", "Alert", ERROR_MESSAGE);
     System.exit (0);
   }
@@ -330,7 +246,7 @@ void ecsProcessData(char rxch)
       {
         if (CES_Pkt_Data_Counter1 < 4)                                                            //Channel 1 for packet counter
         {
-          // DataRcvPacket1[CES_Pkt_Data_Counter1]= (char) (rxch);
+          DataRcvPacket1[CES_Pkt_Data_Counter1]= (char) (rxch);
           CES_Pkt_Data_Counter1++;
         } else                                                                                    //Channel 2 for original data
         {
@@ -343,41 +259,41 @@ void ecsProcessData(char rxch)
       if (rxch==CES_CMDIF_PKT_STOP)
       {     
 
+        int data1 = ecsParsePacket(DataRcvPacket1, DataRcvPacket1.length-1);
+        ecgVoltage = (double) data1/(Math.pow(10, 3));
         int data2 = ecsParsePacket(DataRcvPacket2, DataRcvPacket2.length-1);
-        receivedVoltage = (double) data2/(Math.pow(10, 3));
-        //  println(receivedVoltage);
+        respirationVoltage = (double) data1/(Math.pow(10, 3));
+        ecgVoltage = (double) data2/(Math.pow(10, 3));
+
         time = time+1;
         xdata[arrayIndex] = time;
-        ydata[arrayIndex] = (float)receivedVoltage;
-        bpmArray[arrayIndex] = (float)receivedVoltage;
+        ecgdata[arrayIndex] = (float)ecgVoltage;
+        respdata[arrayIndex]= (float)respirationVoltage;
+        bpmArray[arrayIndex] = (float)ecgVoltage;
+        maxArray[arrayIndex] = max(ecgdata);
+        minArray[arrayIndex] = min(ecgdata);
+
         arrayIndex++;
 
         if (arrayIndex == pSize)
         {  
           arrayIndex = 0;
           time = 0;
-          
-          if (start)
+          if (startPlot)
           {
             hr.bpmCalc(bpmArray);
-          }
-          else
+          } else
           {
-              bpm1.setText("0");
+            bpm1.setText("0");
           }
         }       
 
-        max = max(ydata);
-        min = min(ydata);
+        maxr = max(respdata);
+        minr = min(respdata);
 
-        if (max >= g.yMax)
-        {
-          g.yMax = (int)max;
-        }
-        if (min <= g.yMin)
-        {
-          g.yMin = (int)min;
-        }
+        maxe = averageValue(maxArray);
+        mine = averageValue(minArray);
+
         if (logging == true)
         {
           try {
@@ -385,7 +301,7 @@ void ecsProcessData(char rxch)
             dateFormat = new SimpleDateFormat("HH:mm:ss");
             output = new FileWriter(jFileChooser.getSelectedFile(), true);
             bufferedWriter = new BufferedWriter(output);
-            bufferedWriter.write(dateFormat.format(date)+" : " +receivedVoltage);
+            bufferedWriter.write(dateFormat.format(date)+" : " +ecgVoltage);
             bufferedWriter.newLine();
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -418,136 +334,6 @@ public int ecsParsePacket(char DataRcvPacket[], int n)
     return (DataRcvPacket[n]<<(n*8))| ecsParsePacket(DataRcvPacket, n-1);
 }
 
-/*********************************************** Dropdown Event Function *********************************************************/
-
-public void Select_Port(int theValue)
-{
-  Ss = theValue;
-  portSelected = true;
-  output("Port "+comList[Ss]+" is selected");
-}
-
-/*********************************************** Button Event Function *********************************************************/
-
-public void START(int theValue) {
-  try {
-    if (!start)
-    {
-      //   draw();
-      startButton.hide();
-      stopButton.show();
-      stopButton.bringToFront();
-      start = true;
-      setLock(controlP5.getController("STOP"), false);
-      setLock(controlP5.getController("RECORD"), false);
-    }
-  }
-  catch(Exception e)
-  {
-  }
-}
-
-public void STOP(int theValue) {
-  try {
-    Ss = -1;
-    start = false;
-    stopButton.hide();
-    startButton.show();
-    startButton.bringToFront();
-  }
-  catch(Exception e)
-  {
-  }
-}
-
-public void RECORD() {
-  try {
-    recordButton.hide();
-    setLock(controlP5.getController("START"), true);
-    setLock(controlP5.getController("STOP"), true);
-    setLock(controlP5.getController("CLOSE"), true);
-    jFileChooser = new JFileChooser();
-    jFileChooser.setSelectedFile(new File("log.txt"));
-    jFileChooser.showSaveDialog(null);
-    String filePath = jFileChooser.getSelectedFile()+"";
-    if ((filePath.equals("log.txt"))||(filePath.equals("null")))
-    {
-      recordButton.show();
-      recordButton.bringToFront();
-      setLock(controlP5.getController("START"), false);
-      setLock(controlP5.getController("STOP"), false);
-      setLock(controlP5.getController("CLOSE"), false);
-    } else
-    {    
-      finishRecord.show();
-      finishRecord.bringToFront();
-      logging = true;
-      date = new Date();
-      output = new FileWriter(jFileChooser.getSelectedFile(), true);
-      bufferedWriter = new BufferedWriter(output);
-      bufferedWriter.newLine();
-      bufferedWriter.write(date+"");
-      bufferedWriter.newLine();
-      bufferedWriter.flush();
-      bufferedWriter.close();
-    }
-  }
-  catch(Exception e)
-  {
-  }
-}
-
-public void DONE() {
-  try {
-    if (logging == true)
-    {
-      showMessageDialog(null, "Log File Saved successfully");
-      finishRecord.hide();
-      recordButton.show();
-      recordButton.bringToFront();
-      setLock(controlP5.getController("START"), false);
-      setLock(controlP5.getController("STOP"), false);
-      setLock(controlP5.getController("CLOSE"), false);
-      logging = false;
-    }
-  }
-  catch(Exception e)
-  {
-  }
-}
-public void CLOSE() {
-  try {
-
-    if (visibility)
-    {
-      if (port != null)
-      {
-        port.stop();
-        port = null;
-        exit();
-      } else
-      {
-        exit();
-      }
-    } else
-      visibility = true;
-  }
-  catch(Exception e)
-  {
-  }
-}
-
-/*********************************************** Button Enable & Disable Function *********************************************************/
-
-void setLock(Controller theController, boolean theValue) {
-  theController.setLock(theValue);
-  if (theValue) {
-    theController.setColorBackground(color(220, 225, 242));
-  } else {
-    theController.setColorBackground(color(colorValue));
-  }
-}
-
 
 void setChartSettings() {
   g.xLabel="";
@@ -556,6 +342,53 @@ void setChartSettings() {
   g.xDiv=10;  
   g.xMax=pSize; 
   g.xMin=0;  
-  g.yMax=-200; 
-  g.yMin=-50;
+  g.yMax=10; 
+  g.yMin=-10;
+
+  g1.xLabel="";
+  g1.yLabel="";
+  g1.Title="";  
+  g1.xDiv=10;  
+  g1.xMax=pSize; 
+  g1.xMin=0;  
+  g1.yMax=10; 
+  g1.yMin=-10;
+}
+
+double averageValue(float dataArray[])
+{
+
+  float total = 0;
+  for (int i=0; i<dataArray.length; i++)
+  {
+    total = total + dataArray[i];
+  }
+
+  return total/dataArray.length;
+}
+
+// Use this method to add additional statements
+// to customise the GUI controls
+public void customGUI() {
+  comList = port.list();
+  String comList1[] = new String[comList.length+1];
+  comList1[0] = "SELECT THE PORT";
+  for (int i = 1; i <= comList.length; i++)
+  {
+    comList1[i] = comList[i-1];
+  }
+  start.setEnabled(false);
+  record.setEnabled(false);
+  done.setEnabled(false);
+  label1.setVisible(false);
+  label2.setVisible(false);
+  comList = comList1;
+  portList.setItems(comList1, 0);
+  done.setVisible(false);
+  bpm1.setFont(new Font("Arial", Font.PLAIN, 105));
+  bpm1.setLocalColor(2, color(255, 255, 255));
+  label1.setFont(new Font("Arial", Font.PLAIN, 25));
+  label1.setLocalColor(2, color(255, 255, 255));
+  label2.setFont(new Font("Arial", Font.PLAIN, 25));
+  label2.setLocalColor(2, color(255, 255, 255));
 }
