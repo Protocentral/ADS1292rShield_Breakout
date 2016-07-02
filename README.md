@@ -123,7 +123,7 @@ Using Processing - Data Visualisation Software (New!)
 
  d. From the above mentioned "ads1292r_shield" directory Copy/Move the contents of the ADS1292rShield_Breakout/Processing/ces_view_ecg folder to the Processing sketchbook directory which is also mentioned above (Locate the Processing sketchbook)
 
- e. Finally, copy the controlP5 directories from ADS1292rShield_Breakout\Processing\libraries and paste them into the libraries directory of your Processing sketchbook.
+ e. Finally, copy the controlP5 and G4P directories from ADS1292rShield_Breakout\Processing\libraries and paste them into the libraries directory of your Processing sketchbook.
 
  f. You are all set now to get your first ECG reading visualised from the ADS1292R shield!
 
