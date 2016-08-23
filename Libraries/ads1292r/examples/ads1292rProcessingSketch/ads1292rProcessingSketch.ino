@@ -1,5 +1,6 @@
 #include <ads1292r.h>
 #include <SPI.h>
+
 uint8_t DataPacketHeader[16];
 ads1292r ADS1292;
 //Packet format
@@ -16,10 +17,10 @@ volatile static int SPI_RX_Buff_Count = 0;
 volatile char *SPI_RX_Buff_Ptr;
 volatile int Responsebyte = false;
 volatile unsigned int pckt =0 , buff=0,t=0 , j1=0,j2=0;
-volatile unsigned long int EEG_Ch1_Data[150],EEG_Ch2_Data[150];
+volatile unsigned long int RESP_Ch1_Data[150],ECG_Ch2_Data[150];
 volatile unsigned char datac[150];
-unsigned long ueegtemp = 0,Pkt_Counter=0;
-signed long seegtemp=0;
+unsigned long uecgtemp = 0,Pkt_Counter=0;
+signed long secgtemp=0;
 volatile int i;
 volatile long packet_counter=0;
 
@@ -32,7 +33,7 @@ void setup()
   pinMode(ADS1292_START_PIN, OUTPUT);  //5
   pinMode(ADS1292_PWDN_PIN, OUTPUT);  //4
   
-  // Serial.begin(9600);  // Baudrate for serial communica
+  Serial.begin(57600);  // Baudrate for serial communica
   //initalize ADS1292 slave
   ADS1292.ads1292_Init();
   //ADS1292.ads1292_Reset();
@@ -69,25 +70,22 @@ void loop()
     for(i=3;i<9;i+=9)
     {
       //udi_cdc_putc(SPI_RX_Buff[i]);
-      //EEG_Ch1_Data[j1++]=  SPI_RX_Buff[i+0];
-      //EEG_Ch1_Data[j1++]= SPI_RX_Buff[i+1];
-      //EEG_Ch1_Data[j1++]= SPI_RX_Buff[i+2];
-    
-
-
-      EEG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+3];
-      EEG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+4];
-      EEG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+5];
+      //RESP_Ch1_Data[j1++]=  SPI_RX_Buff[i+0];
+      //RESP_Ch1_Data[j1++]= SPI_RX_Buff[i+1];
+      //RESP_Ch1_Data[j1++]= SPI_RX_Buff[i+2];
+ 
+      ECG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+3];
+      ECG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+4];
+      ECG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+5];
 
     }
-    //seegtemp = -89485;  
+ 
      packet_counter++;
      
-    ueegtemp = (unsigned long) ((EEG_Ch2_Data[0]<<16)|(EEG_Ch2_Data[1]<<8)|EEG_Ch2_Data[2]);
-    ueegtemp = (unsigned long) (ueegtemp<<8);
-    seegtemp = (signed long) (ueegtemp);
-    seegtemp = (signed long) (seegtemp>>8); 
-     //Serial.println(volt_int32);Serial.println(volt);
+    uecgtemp = (unsigned long) ((ECG_Ch2_Data[0]<<16)|(ECG_Ch2_Data[1]<<8)|ECG_Ch2_Data[2]);
+    uecgtemp = (unsigned long) (uecgtemp<<8);
+    secgtemp = (signed long) (uecgtemp);
+    secgtemp = (signed long) (secgtemp>>8); 
 
     DataPacketHeader[0] = 0x0A;
     DataPacketHeader[1] = 0xFA;
@@ -100,25 +98,20 @@ void loop()
     DataPacketHeader[7] = packet_counter>>16;
     DataPacketHeader[8] = packet_counter>>24; 
 
-    DataPacketHeader[9] = seegtemp;
-    DataPacketHeader[10] = seegtemp>>8;
-    DataPacketHeader[11] = seegtemp>>16;
-    DataPacketHeader[12] = seegtemp>>24; 
+    DataPacketHeader[9] = secgtemp;
+    DataPacketHeader[10] = secgtemp>>8;
+    DataPacketHeader[11] = secgtemp>>16;
+    DataPacketHeader[12] = secgtemp>>24; 
 
     DataPacketHeader[13] = 0x00;
     DataPacketHeader[14] = 0x0b;
 
     for(i=0; i<15; i++) // transmit the data
     {
-    //    Serial.write(DataPacketHeader[i]);
         Serial.write(DataPacketHeader[i]);
-        //udi_cdc_putc(datac[i]);
-        //cpu_delay_us(90, 48000000);   
      } 
+         
 
-             
-            
-  // Serial.println( seegtemp);
     }
     
     SPI_RX_Buff_Count = 0;
@@ -127,5 +120,4 @@ void loop()
 
 
     
-
 
