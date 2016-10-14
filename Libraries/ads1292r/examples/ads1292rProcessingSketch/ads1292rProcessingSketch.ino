@@ -78,6 +78,9 @@ void loop()
       ECG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+4];
       ECG_Ch2_Data[j2++]= (unsigned char)SPI_RX_Buff[i+5];
 
+      RESP_Ch1_Data[j1++]= (unsigned char)SPI_RX_Buff[i+0];
+      RESP_Ch1_Data[j1++]= (unsigned char)SPI_RX_Buff[i+1];
+      RESP_Ch1_Data[j1++]= (unsigned char)SPI_RX_Buff[i+2];
     }
  
      packet_counter++;
@@ -93,11 +96,16 @@ void loop()
     DataPacketHeader[3] = (uint8_t) (data_len>>8);
     DataPacketHeader[4] = 0x02;
 
-    DataPacketHeader[5] = packet_counter;
-    DataPacketHeader[6] = packet_counter>>8;
-    DataPacketHeader[7] = packet_counter>>16;
-    DataPacketHeader[8] = packet_counter>>24; 
+    DataPacketHeader[5] = secgtemp;
+    DataPacketHeader[6] = secgtemp>>8;
+    DataPacketHeader[7] = secgtemp>>16;
+    DataPacketHeader[8] = secgtemp>>24; 
 
+    uecgtemp = (unsigned long) ((RESP_Ch1_Data[0]<<16)|(RESP_Ch1_Data[1]<<8)|RESP_Ch1_Data[2]);
+    uecgtemp = (unsigned long) (uecgtemp<<8);
+    secgtemp = (signed long) (uecgtemp);
+    secgtemp = (signed long) (secgtemp>>8); 
+    
     DataPacketHeader[9] = secgtemp;
     DataPacketHeader[10] = secgtemp>>8;
     DataPacketHeader[11] = secgtemp>>16;
@@ -108,16 +116,9 @@ void loop()
 
     for(i=0; i<15; i++) // transmit the data
     {
-        Serial.write(DataPacketHeader[i]);
+      Serial.write(DataPacketHeader[i]);
      } 
-         
-
-    }
+   }
     
     SPI_RX_Buff_Count = 0;
-         
-  }           
-
-
-    
-
+}           
