@@ -260,10 +260,9 @@ void ecsProcessData(char rxch)
       {     
 
         int data1 = ecsParsePacket(DataRcvPacket1, DataRcvPacket1.length-1);
-        ecgVoltage = (double) data1/(Math.pow(10, 3));
+        ecgVoltage = (double) (data1/Math.pow(10,3));
         int data2 = ecsParsePacket(DataRcvPacket2, DataRcvPacket2.length-1);
-        respirationVoltage = (double) data1/(Math.pow(10, 3));
-        ecgVoltage = (double) data2/(Math.pow(10, 3));
+        respirationVoltage = (double) (data2/Math.pow(10,3));
 
         time = time+1;
         xdata[arrayIndex] = time;
@@ -291,8 +290,8 @@ void ecsProcessData(char rxch)
         maxr = max(respdata);
         minr = min(respdata);
 
-        maxe = averageValue(maxArray);
-        mine = averageValue(minArray);
+        maxe = max(ecgdata);
+        mine = min(ecgdata);
 
         if (logging == true)
         {
@@ -301,7 +300,8 @@ void ecsProcessData(char rxch)
             dateFormat = new SimpleDateFormat("HH:mm:ss");
             output = new FileWriter(jFileChooser.getSelectedFile(), true);
             bufferedWriter = new BufferedWriter(output);
-            bufferedWriter.write(dateFormat.format(date)+" : " +ecgVoltage);
+            bufferedWriter.write(dateFormat.format(date)+" : " +(ecgVoltage * 1.9604645E-08)+" V ");
+            bufferedWriter.write(dateFormat.format(date)+" : " +(respirationVoltage * 1.9604645E-08)+" V ");
             bufferedWriter.newLine();
             bufferedWriter.flush();
             bufferedWriter.close();
