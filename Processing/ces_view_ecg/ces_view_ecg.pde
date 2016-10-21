@@ -110,7 +110,7 @@ String selectedPort;                                    // Holds the selected po
 
 public void setup() {
   // fullScreen();
-  size(800, 480, JAVA2D);
+  size(1000, 600, JAVA2D);
 
   /* G4P created Methods */
 
@@ -124,8 +124,8 @@ public void setup() {
   headerButton = new HeaderButton(0, 0, width, 50);
   helpWidget = new HelpWidget(0, height - 30, width, 40); 
   hr = new BPM();
-  g = new Graph(10, 100, width-20, 100);
-  g1 = new Graph(10, 300, width-20, 100);
+  g = new Graph(0, 100, width-50, 200);
+  g1 = new Graph(0, 350, width-50, 200);
   g.GraphColor = color(0, 255, 0);
   g1.GraphColor = color(0, 255, 0);
 
@@ -198,6 +198,9 @@ void startSerial()
     port = new Serial(this, selectedPort, 57600);          // Used to connect with the port selected from the drop down
     port.clear();
     serialSet = true;
+    start.setEnabled(true);
+    start.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+    
   }
   catch(Exception e)
   {
@@ -278,19 +281,19 @@ void ecsProcessData(char rxch)
           CES_Pkt_Data_Counter2++;
         }
       }
-      } else                                                                //All header and data received
+    } else                                                                //All header and data received
     {
       if (rxch==CES_CMDIF_PKT_STOP)
       {     
         // Converting the ADC read value to get ECG and Respiration
-        
+
         int data1 = ecsParsePacket(DataRcvPacket1, DataRcvPacket1.length-1);
         ecgVoltage = (double) (data1/Math.pow(10, 3));
         int data2 = ecsParsePacket(DataRcvPacket2, DataRcvPacket2.length-1);
         respirationVoltage = (double) (data2/Math.pow(10, 3));
-  
+
         // Assigning the ECG and Respiration value to the respective buffer
-        
+
         time = time+1;
         xdata[arrayIndex] = time;
         ecgdata[arrayIndex] = (float)ecgVoltage;
@@ -302,7 +305,7 @@ void ecsProcessData(char rxch)
 
         // When the buffer memory is used fully, then we have to replace the data with the existing data
         // Heart Rate is calculated by sending the buffer to BPM class.
-        
+
         if (arrayIndex == pSize)
         {  
           arrayIndex = 0;
@@ -369,7 +372,7 @@ public int ecsParsePacket(char DataRcvPacket[], int n)
 /**************** Setting the Limits for the graph **************/
 
 void setChartSettings() {
-  
+
   g.xDiv=10;  
   g.xMax=pSize; 
   g.xMin=0;  
@@ -428,4 +431,6 @@ public void customGUI() {
   label1.setLocalColor(2, color(255, 255, 255));
   label2.setFont(new Font("Arial", Font.PLAIN, 25));
   label2.setLocalColor(2, color(255, 255, 255));
+  start.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  record.setLocalColorScheme(GCScheme.CYAN_SCHEME);
 }
