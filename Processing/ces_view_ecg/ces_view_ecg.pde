@@ -20,8 +20,6 @@ import static javax.swing.JOptionPane.*;
 import javax.swing.JFileChooser;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 // Date Format
 import java.util.Date;
@@ -85,7 +83,7 @@ boolean startPlot = false;                             // Conditional Variable t
 boolean logging = false;                                // Variable to check whether to record the data or not
 FileWriter output;                                      // In-built writer class object to write the data to file
 JFileChooser jFileChooser;                              // Helps to choose particular folder to save the file
-Date date, MPDate;                                      // Variables to record the date related values                              
+Date date;                                              // Variables to record the date related values                              
 BufferedWriter bufferedWriter;
 DateFormat dateFormat;
 
