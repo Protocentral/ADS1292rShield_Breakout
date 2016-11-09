@@ -61,7 +61,7 @@ Installing the Arduino libraries
 
  https://github.com/Protocentral/ADS1292rShield_Breakout
 
- Unzip the ZIP file and it should result in a folder called "ads1292r_shield". Copy this folder into your Arduino IDE’s       libraries folder. Depending on your operating system, this could be either within your Arduino IDE’s foldesualizing r or in  your documents folder. For more information, please check http://arduino.cc/en/Guide/Libraries
+ Unzip the ZIP file and it should result in a folder called "ads1292r_shield". Copy this folder into your Arduino IDE’s libraries folder. Depending on your operating system, this could be either within your Arduino IDE’s foldesualizing r or in  your documents folder. For more information, please check http://arduino.cc/en/Guide/Libraries
  
 Running the Example sketch
 --------------------------
@@ -69,25 +69,6 @@ Running the Example sketch
 
 This sketch is designed to read the data from the electrodes in real-time and stream them thorugh the UART to a receiving software. 
 
-Using Brainbay
-----------------
- Brainbay is an open-source application originally designed for bio-feedback applications, it can be easily used for          visualizing the ECG in real-time. Brainbay can be downloaded from the following link:
- https://github.com/Protocentral/ADS1292rShield_Breakout/tree/master/BrainbayFreeware
- You can use the Windows installer and follow the instructions on the screen to install Brainbay on your computer
- Brainbay now has to be configured to work for our data format and that can be achieved by the using the configuration file   https://github.com/Protocentral/ADS1292rShield_Breakout/tree/master/BrainbayFreeware
- In Brainbay, use Design>Load Design to load the configuration file that you downloaded in the previous link.
- Right click the EEG block in brainbay, and select the right COM port and baud rate 57600, press connect and then press play  (F7). In Brainbay, now the following are displayed
-
-
-![ECGRealTimeDispaly](http://www.protocentral.com/img/cms/ads1292r_shield/image008.png)  
-
- Channel 1 (the red trace) shows the raw ECG obtained from the board
- Channel 2(the green trace) shows the filtered ECG which is run through several stages of filters.
- BPM is calculated by a threshold detector built into the Brainbay software.
-
-The filtered ECG waveform (generated from an ECG simulator) from the output should look like this:
-
-![FilteredECG](http://www.protocentral.com/img/cms/ads1292r_shield/Ecg_BB_plot.png)
 
 Using Processing - Data Visualisation Software (New!)
 -----------------------------------------------------
