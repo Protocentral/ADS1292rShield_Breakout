@@ -141,12 +141,11 @@ Placing the Electrodes on the body
 ---------------------------------
 ![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/5/1/3551.jpg)
 
-License Information
--------------------
-This product is open source!
 
 License Information
 ===================
+
+This product is open source! Both, our hardware and software are open source and licensed under the following licenses:
 
 Hardware
 ---------
@@ -158,5 +157,6 @@ Software
 
 **All software is released under the MIT License(http://opensource.org/licenses/MIT).**
 
+[*LICENSE.md*](LICENSE.md)
 
-Please check LICENSE.MD for detailed license descriptions.
+Please check !(LICENSE.MD) for detailed license descriptions.
