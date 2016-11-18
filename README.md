@@ -145,4 +145,18 @@ License Information
 -------------------
 This product is open source!
 
-Please use, reuse, and modify these files as you see fit. Please maintain attribution to Protocentral and release anything derivative under the same license.
+License Information
+===================
+
+Hardware
+---------
+
+**All hardware is released under [Creative Commons Share-alike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).**
+
+Software
+--------
+
+**All software is released under the MIT License(http://opensource.org/licenses/MIT).**
+
+
+Please check LICENSE.MD for detailed license descriptions.
