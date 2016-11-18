@@ -151,12 +151,11 @@ Hardware
 ---------
 
 **All hardware is released under [Creative Commons Share-alike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).**
+![CC-BY-SA-4.0](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
 Software
 --------
 
 **All software is released under the MIT License(http://opensource.org/licenses/MIT).**
 
-[*LICENSE.md*](LICENSE.md)
-
-Please check !(LICENSE.MD) for detailed license descriptions.
+Please check [*LICENSE.md*](LICENSE.md) for detailed license descriptions.
