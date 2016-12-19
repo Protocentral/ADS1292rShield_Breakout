@@ -83,8 +83,8 @@ Using Processing - Data Visualisation Software (New!)
 * [MAC] (http://download.processing.org/processing-3.1.1-macosx.zip)
 * [Linux 32-bit] (http://download.processing.org/processing-3.1.1-linux32.tgz)
 * [Linux 64-bit] (http://download.processing.org/processing-3.1.1-linux64.tgz)
-* [Windows 32-bit] (http://download.processing.org/processing-3.1.1-windows32.zip)
-* [Windows 64-bit] (http://download.processing.org/processing-3.1.1-windows64.zip)
+* [Windows 32-bit] (https://processing.org/download/?processing)
+* [Windows 64-bit] (https://processing.org/download/?processing)
 
  Once downloaded, unzip the archive and install the app as per your OS.
 
