@@ -12,7 +12,7 @@ ads1292r ADS1292;
 uint8_t data_len = 8;
 unsigned long time;
 
-volatile byte SPI_RX_Buff[150] ;
+volatile byte SPI_RX_Buff[15] ;
 volatile static int SPI_RX_Buff_Count = 0;
 volatile char *SPI_RX_Buff_Ptr;
 volatile int Responsebyte = false;
