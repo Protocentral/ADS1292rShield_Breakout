@@ -1,7 +1,11 @@
 ADS1292R ECG/RESPIRATION SHIELD 
 ================================
 
+[![ECG](https://www.protocentral.com/3059-large_default/ads1292r-ecgrespiration-shield-v2.jpg)  
+*ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)*](https://www.protocentral.com/arduino-shields/818-ads1292r-ecgrespiration-shield-v2.html)
 
+[![bob](https://www.protocentral.com/4040-large_default/ads1292r-ecgrespiration-breakout-board.jpg)  
+*ADS1292R ECG/Respiration Breakout for Arduino- v3 (PC-4116)*](https://www.protocentral.com/analog-adc-boards/783-ads1292r-ecgrespiration-breakout-board.html?search_query=ecg&results=4)
 
 Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. 
 We now include the electrodes and cable also with the shield
@@ -120,13 +124,13 @@ Using Processing - Data Visualisation Software (New!)
 
  f. You should see the ECG wave generated with the values obtained from the ADS1292rShield Breakout Board as shown below.
 
-![ECG Form in Processing](extras/images/processingMAX30003_body.png)
+![ECG Form in Processing](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
 
 Connecting the ECG Electrodes
 ------------------------------
  A 3-electrode cable along with a standard stereo jack is provided along with the shield to connect the electrodes to the     shield. The electrode input connector is highlighted in the below picture.
  
- ![ConnectingTheElectrodes](extras/images/body.jpg)
+ ![ConnectingTheElectrodes](http://www.protocentral.com/img/cms/ads1292r_shield/image006.png)
  
  The other side of the electrode connector would connect to snap-on electrodes attached to the body. For testing purposes,    you can use an ECG simulator to provide inputs to the board. 
 
@@ -135,7 +139,7 @@ Connecting the ECG Electrodes
  
 Placing the Electrodes on the body
 ---------------------------------
-![Wearing the Electrode](extras/connecting electrodes.png)
+![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/5/1/3551.jpg)
 
 
 License Information
