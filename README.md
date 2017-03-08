@@ -124,13 +124,13 @@ Using Processing - Data Visualisation Software (New!)
 
  f. You should see the ECG wave generated with the values obtained from the ADS1292rShield Breakout Board as shown below.
 
-![ECG Form in Processing](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
+![ECG Form in Processing](extras/images/processingMAX30003_body.png)
 
 Connecting the ECG Electrodes
 ------------------------------
  A 3-electrode cable along with a standard stereo jack is provided along with the shield to connect the electrodes to the     shield. The electrode input connector is highlighted in the below picture.
  
- ![ConnectingTheElectrodes](extras/plugin.jpg)
+ ![ConnectingTheElectrodes](extras/images/body.jpg)
  
  The other side of the electrode connector would connect to snap-on electrodes attached to the body. For testing purposes,    you can use an ECG simulator to provide inputs to the board. 
 
