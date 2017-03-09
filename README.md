@@ -130,7 +130,7 @@ Connecting the ECG Electrodes
 ------------------------------
  A 3-electrode cable along with a standard stereo jack is provided along with the shield to connect the electrodes to the     shield. The electrode input connector is highlighted in the below picture.
  
- ![ConnectingTheElectrodes](http://www.protocentral.com/img/cms/ads1292r_shield/image006.png)
+ ![ConnectingTheElectrodes](extras/plugin.jpg)
  
  The other side of the electrode connector would connect to snap-on electrodes attached to the body. For testing purposes,    you can use an ECG simulator to provide inputs to the board. 
 
@@ -139,7 +139,7 @@ Connecting the ECG Electrodes
  
 Placing the Electrodes on the body
 ---------------------------------
-![Wearing the Electrode](https://www.protocentral.com/img/p/3/5/5/1/3551.jpg)
+![Wearing the Electrode](extras/connecting electrodes.png)
 
 
 License Information
