@@ -14,6 +14,20 @@
 //
 //   Requires g4p_control graphing library for processing.  Built on V4.1
 //   Downloaded from Processing IDE Sketch->Import Library->Add Library->G4P Install
+
+// If you have bought the breakout the connection with the Arduino board is as follows:
+// 
+//|ads1292r pin label| Arduino Connection   |Pin Function      |
+//|----------------- |:--------------------:|-----------------:|
+//| VDD              | +5V                  |  Supply voltage  |             
+//| PWDN/RESET       | D4                   |  Reset           |
+//| START            | D5                   |  Start Input     |
+//| DRDY             | D6                   |  Data Ready Outpt|
+//| CS               | D7                   |  Chip Select     |
+//| MOSI             | D11                  |  Slave In        |
+//| MISO             | D12                  |  Slave Out       |
+//| SCK              | D13                  |  Serial Clock    |
+//| GND              | Gnd                  |  Gnd             |
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 

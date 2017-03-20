@@ -56,81 +56,42 @@ Wiring the Breakout to your Arduino
  
 Installing the Arduino libraries 
 ---------------------------------
- The Arduino library contains the functions required to communicate with the ADS1292R ECG/Respiration Shield. Please follow   the following steps to get the library downloaded and working:
- Download the library ZIP file from the following link:
+If you have correctly installed the libraries, the example sketeches should now be available from within Arduino.
 
- https://github.com/Protocentral/ADS1292rShield_Breakout
+[Download the Arduino Sketch here for this board here.](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/Protocentral_ADS1292R-v1.0-arduino.zip)
 
- Unzip the ZIP file and it should result in a folder called "ads1292r_shield". Copy this folder into your Arduino IDE’s libraries folder. Depending on your operating system, this could be either within your Arduino IDE’s foldesualizing r or in  your documents folder. For more information, please check http://arduino.cc/en/Guide/Libraries
+Open up your Arduino IDE and run the Arudino sketch (.ino) file in the archive that you downloaded. Your Arduino should now be programmed to read the ecg data and sending over the USB-UART.  
  
-Running the Example sketch
---------------------------
- If you have correctly installed the libraries, the example sketeches should now be available from within Arduino. Open up    your Arduino IDE and select ads1292r>examples>ads_1292r_breakout_brainbay to open the ECG displaying example for visualization use brainbay freeware(explained below), and  ads1292r>example>Xively_writeYUN7_BPMfiltered_avg to open the   Xively iot HR display example. 
+Using the ProtoCentral_ads1292r_gui GUI
+-----------------------------------
 
-This sketch is designed to read the data from the electrodes in real-time and stream them thorugh the UART to a receiving software. 
-
-
-Using Processing - Data Visualisation Software (New!)
------------------------------------------------------
- Processing is a data visualisation software, in existence since 2001, used by artists and scientists alike. Its an open source coding framework based on Java. If you are familiar with the Arduino environment, the Processing IDE is similar and you wont have much of a learning curve to climb!
+The GUI for visulizing the ECG and Respiration as well as parameters like Heart rate and Respiration rate is written in Processing, based on Java and is cross-compilable across platforms. 
  
- The following are the steps to run the code:
+Java 8 is required on all platforms for running the processing-based GUI application. You can download Java for your platform from the following link.
 
-### 1.Download Processing for your operating system
+[https://java.com/en/download/](https://java.com/en/download/)
 
- Download the processing ide latest version from the link
+### Processing GUI Installation
 
-* [MAC] (http://download.processing.org/processing-3.1.1-macosx.zip)
-* [Linux 32-bit] (http://download.processing.org/processing-3.1.1-linux32.tgz)
-* [Linux 64-bit] (http://download.processing.org/processing-3.1.1-linux64.tgz)
-* [Windows 32-bit] (https://processing.org/download/?processing)
-* [Windows 64-bit] (https://processing.org/download/?processing)
+Download the zip file containing the executable files from the following links for 32-bit/64-bit Windows. If you do not know if you have a 64-bit or 32-bit computer, please download the 32-bit version.
 
- Once downloaded, unzip the archive and install the app as per your OS.
+* [Windows 32-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-win32.zip)
+* [Windows 64-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-win64.zip)
+* [MacOS Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-macos.zip)
+* [Linux 32-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-linux32.zip)
+* [Linux 64-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-linux64.zip)
+* [Raspberry Pi - Raspbian (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-rpi.zip)
 
-### 2. Download the Processing code for ECG visualisation
+Simply download the appropriate file for your operating system, unzip the contents and run the executable program contained in it. 
 
- a. Download the necessary files & directories or clone to your desktop from github.
+Select the port to which your Arduino is connected to from the "Select Port" dropdown box and data should immedaitely start coming in.
 
- b. Unzipping the archive should make a folder by name ads1292r_shield that contains the visualisation code.
 
- c. Locate the Processing sketchbook directory on your computer. This should have been created automatically when you installed processing. Depending on your operating system, the path will be as follows:
-
-* On Windows: c:/My Documents/Processing/
-* On MAC: /Users/your_user_name/Documents/Processing/
-* On Linux: /Home/your_user_name/sketchbook/
-
-**Note:** This directory appears as "Processing" on Windows/Mac, and goes by the name "Sketchbook" on Linux. Create a subdirectory by name "libraries if one doesn't exist already.
-
- d. From the above mentioned "ads1292r_shield" directory Copy/Move the contents of the ADS1292rShield_Breakout/Processing/ces_view_ecg folder to the Processing sketchbook directory which is also mentioned above (Locate the Processing sketchbook)
-
- e. Finally, copy the controlP5 and G4P directories from ADS1292rShield_Breakout\Processing\libraries and paste them into the libraries directory of your Processing sketchbook.
-
- f. You are all set now to get your first ECG reading visualised from the ADS1292R shield!
-
-### 3. Open Processing & launch the ces_view_ecg
-
- a. If Processing IDE was open, close it and reopen to refresh the libraries and sketches. The repositories are not refreshed if the IDE was open while the Sketches and Libraries were being updated.
-
- b. Double-click any of the .pde files in the ces_view_ecg directory to open all of the ecg code in the Processing IDE.
-
- c. If everything done so far was good, clicking the "run" button on the top left corner of the IDE, should run the code! If it does not, make sure you installed your libraries correctly.
-
- d. Once the GUI is running, select the port connect with ECG from the "SELECT PORT" dropdown as shown in the figure below
-
-![Port Selection](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/Port-Selection.png)
-
- e. Once the port selection is appropriate the START button gets enabled. Click "START" to initiate visualisation
-
- f. You should see the ECG wave generated with the values obtained from the ADS1292rShield Breakout Board as shown below.
-
-![ECG Form in Processing](https://github.com/Protocentral/ADS1292rShield_Breakout/blob/master/Processing/Final-Output/ECG-Generated.png)
+![ProtoCentral ads1292r_Shield/breakout](docs/img/ecg_plot.gif)
 
 Connecting the ECG Electrodes
 ------------------------------
  A 3-electrode cable along with a standard stereo jack is provided along with the shield to connect the electrodes to the     shield. The electrode input connector is highlighted in the below picture.
- 
- ![ConnectingTheElectrodes](extras/plugin.jpg)
  
  The other side of the electrode connector would connect to snap-on electrodes attached to the body. For testing purposes,    you can use an ECG simulator to provide inputs to the board. 
 
@@ -139,7 +100,7 @@ Connecting the ECG Electrodes
  
 Placing the Electrodes on the body
 ---------------------------------
-![Wearing the Electrode](extras/connecting electrodes.png)
+![Wearing the Electrode](docs/img/body.png)
 
 
 License Information
