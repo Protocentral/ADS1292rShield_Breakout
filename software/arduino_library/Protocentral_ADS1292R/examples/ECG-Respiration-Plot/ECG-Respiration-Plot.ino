@@ -40,7 +40,8 @@ ads1292r ADS1292;   // define class
 #define  CES_CMDIF_PKT_START_1    0x0A
 #define  CES_CMDIF_PKT_START_2     0xFA
 #define  CES_CMDIF_TYPE_DATA       0x02
-#define  CES_CMDIF_PKT_STOP        0x0B
+#define  CES_CMDIF_PKT_STOP_1        0x00
+#define  CES_CMDIF_PKT_STOP_2        0x0B
 
 volatile uint8_t  SPI_Dummy_Buff[30];
 uint8_t DataPacketHeader[16];
@@ -111,8 +112,8 @@ void loop()
     DataPacketHeader[11] = s32DaqVals[0]>>16;
     DataPacketHeader[12] = s32DaqVals[0]>>24; 
 
-    DataPacketHeader[13] = CES_CMDIF_TYPE_DATA;   // Packet footer1:0x00
-    DataPacketHeader[14] = CES_CMDIF_PKT_STOP ;   // Packet footer2:0x0B
+    DataPacketHeader[13] = CES_CMDIF_PKT_STOP_1;   // Packet footer1:0x00
+    DataPacketHeader[14] = CES_CMDIF_PKT_STOP_2 ;   // Packet footer2:0x0B
 
     for(i=0; i<15; i++) 
     {
