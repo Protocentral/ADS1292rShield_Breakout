@@ -105,7 +105,7 @@ public void createGUI(){
   close.setTextBold();
   close.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   close.addEventHandler(this, "close_click");
-  imgButton1 = new GImageButton(this, 488, 3, 277, 48, new String[] { "logo.png", "logo.png", "logo.png" } );
+  imgButton1 = new GImageButton(this, 488, 3, 277, 48, new String[] { "logo.jpg", "logo.jpg", "logo.jpg" } );
   imgButton1.addEventHandler(this, "imgButton1_click1");
   lbl_hr = new GLabel(this, 542, 144, 250, 58);
   lbl_hr.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);

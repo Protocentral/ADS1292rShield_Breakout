@@ -19,6 +19,7 @@
 #include "kalam32_support.h"
 #include "kalam32_tcp.h"
 
+#include "mdns.h"
 #include "ads1292r.h"
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -26,6 +27,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+mdns_server_t * mdns = NULL;
 
 void app_main(void)
 {
@@ -35,6 +37,12 @@ void app_main(void)
 
     //kalam32_uart_init();
     kalam_wifi_init();
+
+    esp_err_t err = mdns_init(TCPIP_ADAPTER_IF_STA, &mdns);
+
+    ESP_ERROR_CHECK( mdns_set_hostname(mdns, "kalam32") );
+    ESP_ERROR_CHECK( mdns_set_instance(mdns, "Kalam32-ECG") );
+
     vTaskDelay(1000/ portTICK_PERIOD_MS);
 
     ads1292_Init();
@@ -46,6 +54,7 @@ void app_main(void)
     //max30003_initchip(PIN_SPI_MISO,PIN_SPI_MOSI,PIN_SPI_SCK,PIN_SPI_CS);
     //max30205_initchip(PIN_I2C_SDA,PIN_I2C_SCL);
     //ads1292r_start();
+
 
     gpio_set_direction(GPIO_NUM_5, GPIO_MODE_OUTPUT);
     int level = 0;
