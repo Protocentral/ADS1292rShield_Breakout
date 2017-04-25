@@ -180,7 +180,7 @@ public void setup()
   }
   time = 0;
   
-  myClient = new Client(this,"192.168.1.101",4567);
+  myClient = new Client(this,"kalam32.local",4567);
   startPlot=true;
   
   label1.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -188,14 +188,12 @@ public void setup()
   label11.setFont(new Font("Arial", Font.PLAIN, 14));
 }
 
-void ClientEvent(Client someClient)
+void clientEvent(Client someClient)
 {
   inString=myClient.readChar();
-    println(inString);
-  pc_processData(inString);
-  
-
+  pc_processData(inString);   
 }
+
 public void draw() 
 {
   background(0);
@@ -256,12 +254,13 @@ void startSerial()
 //  Event Handler To Read the packets received from the Device
 //
 //////////////////////////////////////////////////////////////////
-
+/*
 void serialEvent (Serial blePort) 
 {
   inString = blePort.readChar();
   pc_processData(inString);
 }
+*/
 
 /*********************************************** Getting Packet Data Function *********************************************************/
 
