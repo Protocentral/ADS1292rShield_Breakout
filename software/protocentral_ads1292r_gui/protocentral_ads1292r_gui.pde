@@ -21,6 +21,8 @@ import g4p_controls.*;                       // Processing GUI Library to create
 import processing.serial.*;                  // Serial Library
 import grafica.*;
 
+
+
 // Java Swing Package For prompting message
 import java.awt.*;
 import javax.swing.*;
@@ -68,7 +70,7 @@ char ces_pkt_ecg_bytes[] = new char[4];                    // Buffer to hold ECG
 char ces_pkt_resp_bytes[] = new char[4];                   // Respiration Buffer
 char ces_pkt_hr_bytes[] = new char[4];                // Buffer for SpO2 IR
 
-int pSize = 1000;                                            // Total Size of the buffer
+int pSize = 800;                                            // Total Size of the buffer
 int arrayIndex = 0;                                          // Increment Variable for the buffer
 float time = 0;                                              // X axis increment variable
 
@@ -125,6 +127,7 @@ double threshold;                                    // Stores the threshold
 float minimizedVolt[] = new float[pSize];            // Stores the absoulte values in the buffer
 int beats = 0, bpm = 0;                              // Variables to store the no.of peaks and bpm
 int sampleRate = 125;
+boolean leaderror_detected=false;
 
 public void setup() 
 {
@@ -133,7 +136,7 @@ public void setup()
   GPointsArray pointsECG = new GPointsArray(nPoints1);
   GPointsArray pointsResp = new GPointsArray(nPoints1);
 
-  size(800, 480, JAVA2D);
+  size(1200, 600, JAVA2D);
   //fullScreen();
   /* G4P created Methods */
   createGUI();
@@ -176,17 +179,17 @@ public void setup()
   }
   time = 0;
   
-    label1.setFont(new Font("Monospaced", Font.PLAIN, 14));
+    label1.setFont(new Font("Monospaced", Font.BOLD, 25));
   label1.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
-  label11.setFont(new Font("Arial", Font.PLAIN, 14));
+  label11.setFont(new Font("Arial", Font.BOLD, 25));
 }
 
 public void draw() 
 {
   background(0);
-  GPointsArray pointsECG = new GPointsArray(nPoints1);
+  GPointsArray pointsECG = new GPointsArray(nPoints1); //<>//
   GPointsArray pointsResp = new GPointsArray(nPoints1);
- //<>//
+
   if (startPlot)                             // If the condition is true, then the plotting is done
   {
     for(int i=0; i<nPoints1;i++)
@@ -303,19 +306,31 @@ void pc_processData(char rxch)
       { 
         ces_pkt_ecg_bytes[0] = CES_Pkt_Data_Counter[0];
         ces_pkt_ecg_bytes[1] = CES_Pkt_Data_Counter[1];
-        ces_pkt_ecg_bytes[2] = CES_Pkt_Data_Counter[2];
-        ces_pkt_ecg_bytes[3] = CES_Pkt_Data_Counter[3];
 
-        ces_pkt_resp_bytes[0] = CES_Pkt_Data_Counter[4];
-        ces_pkt_resp_bytes[1] = CES_Pkt_Data_Counter[5];
-        ces_pkt_resp_bytes[2] = CES_Pkt_Data_Counter[6];
-        ces_pkt_resp_bytes[3] = CES_Pkt_Data_Counter[7];
 
-        int data1 = ecsParsePacket(ces_pkt_ecg_bytes, ces_pkt_ecg_bytes.length-1);
-        ecg = (double) data1/(Math.pow(10, 3));
+    
+        ces_pkt_resp_bytes[0] = CES_Pkt_Data_Counter[2];
+        ces_pkt_resp_bytes[1] = CES_Pkt_Data_Counter[3];
+        ces_pkt_resp_bytes[2] = CES_Pkt_Data_Counter[4];
+        ces_pkt_resp_bytes[3] = CES_Pkt_Data_Counter[5];  
         
+        hr = (int)CES_Pkt_Data_Counter[6];
+
+        int data1 = ces_pkt_ecg_bytes[0] | ces_pkt_ecg_bytes[1] <<8 ; //ecsParsePacket(ces_pkt_ecg_bytes, ces_pkt_ecg_bytes.length-1);
+        data1 = data1<<16;
+        data1 = data1>>16;
+        /*int data1  = ecsParsePacket(ces_pkt_ecg_bytes, ces_pkt_ecg_tes.length-1);*/
+        ecg = (double) data1/(Math.pow(10, 3));
+
+               
+                
         int data2 = ecsParsePacket(ces_pkt_resp_bytes, ces_pkt_resp_bytes.length-1);
-        resp = (double) data2; ///(Math.pow(10, 3));
+       /* int data2 = ces_pkt_resp_bytes[2] | ces_pkt_resp_bytes[3] <<8 ; 
+        data2 = data2<<16;
+        data2 = data2>>16 ;*/
+        resp = (double) data2;       // hr = (int) ces_pkt_resp_bytes[0];, 3));
+        
+
 
         // Assigning the values for the graph buffers
 
@@ -328,17 +343,32 @@ void pc_processData(char rxch)
         
         arrayIndex++;
         
+        if(hr != 0)
+        {
+                    lbl_hr.setText(""+ hr);
+          if(leaderror_detected == true)
+          {
+             leaderror_detected =  false;
+             lbl_hr.setTextBold();
+             lbl_hr.setFont(new Font("Monospaced", Font.PLAIN, 40));
+             lbl_hr.setLocalColorScheme(GCScheme.GREEN_SCHEME);
+          }
+         }
+        else if(hr == 0 && leaderror_detected== false)
+        {
+          
+          lbl_hr.setTextBold();
+          lbl_hr.setFont(new Font("Monospaced", Font.PLAIN,25));
+          lbl_hr.setLocalColorScheme(GCScheme.RED_SCHEME);
+          lbl_hr.setText("ECG lead error!!");
+          leaderror_detected =  true;
+        }
+        
         if (arrayIndex == pSize)
         {  
           arrayIndex = 0;
           time = 0; 
-          if (startPlot)
-          {
-            bpmCalc(bpmArray);
-          } else
-          {
-            lbl_hr.setText("0");
-          }
+
         }       
 
         // If record button is clicked, then logging is done
@@ -401,68 +431,3 @@ public void customGUI()
   portList.setItems(comList1, 0);
   //done.setVisible(false);
 }
-
-/*************** Function to Calculate Average *********************/
-
-double averageValue(float dataArray[])
-{
-
-  float total = 0;
-  for (int i=0; i<dataArray.length; i++)
-  {
-    total = total + dataArray[i];
-  }
-  return total/dataArray.length;
-}
-
-void bpmCalc(float[] recVoltage)
-{
-    int j = 0, n = 0, cntr = 0;
-
-    // Making the array into absolute (positive values only)
-
-    for (int i=0; i<pSize; i++)
-    {
-      recVoltage[i] = (float)Math.abs(recVoltage[i]);
-    }
-
-    j = 0;
-    for (int i = 0; i < pSize; i++)
-    {
-      minimizedVolt[j++] = recVoltage[i];
-    }
-    
-    // Calculating the minimum and maximum value
-    
-    min = min(minimizedVolt);
-    max = max(minimizedVolt);
-
-    if ((int)min == (int)max)
-    {
-      lbl_hr.setText("0");
-    } else
-    {
-      threshold = min+max;                                     // Calculating the threshold value
-      threshold = (threshold) * 0.600;
-
-      if (threshold != 0)
-      {
-        while (n < pSize)                                      // scan through ECG samples
-        {
-          if (minimizedVolt[n] > threshold)                    // ECG threshold crossed
-          {
-            beats++;
-            n = n+40;                                          // skipping the some samples to avoid repeatation
-          } else
-            n++;
-        }
-        bpm = (beats*60)/(pSize/sampleRate);
-
-        lbl_hr.setText(bpm+"");                                  // Calculated BPM is displayed
-        beats = 0;
-      } else
-      {
-        lbl_hr.setText("0");
-      }
-    }
-  }

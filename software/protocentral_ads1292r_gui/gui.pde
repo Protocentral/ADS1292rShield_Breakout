@@ -107,30 +107,33 @@ public void createGUI(){
   close.addEventHandler(this, "close_click");
   imgButton1 = new GImageButton(this, 488, 3, 277, 48, new String[] { "logo.png", "logo.png", "logo.png" } );
   imgButton1.addEventHandler(this, "imgButton1_click1");
-  lbl_hr = new GLabel(this, 542, 144, 250, 58);
+  lbl_hr = new GLabel(this, 900, 190, 200, 58);
   lbl_hr.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   lbl_hr.setText("---");
   lbl_hr.setTextBold();
   lbl_hr.setOpaque(false);
-  lbl_hr.setFont(new Font("Monospaced", Font.PLAIN, 22));
+  lbl_hr.setFont(new Font("Monospaced", Font.PLAIN, 40));
   lbl_hr.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
-  lbl_rtor = new GLabel(this, 543, 79, 250, 62);
+/*  lbl_rtor = new GLabel(this, 900, 100, 250, 62);
   lbl_rtor.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   lbl_rtor.setText("---");
   lbl_rtor.setTextBold();
   lbl_rtor.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
-  lbl_rtor.setOpaque(false);
+  lbl_rtor.setOpaque(false);*/
   
-  label11 = new GLabel(this, 591, 80, 177, 20);
+  label11 = new GLabel(this, 300, 300, 190, 40);
   label11.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label11.setText("Heart Rate (BPM)");
+ // label11.setText("Heart Rate (BPM)");
   label11.setTextBold();
   label11.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
   label11.setOpaque(false);
   
-  label1 = new GLabel(this, 592, 145, 166, 18);
+  label1 = new GLabel(this, 900, 100, 200, 100);
+ // label1.setFont("Impact");
+    label1.setFont(new Font("Monospaced", Font.BOLD, 22));
+  label1.setTextBold();
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label1.setText("Resp. Rate (BPM)");
+  label1.setText("Heart. Rate (BPM)");
   label1.setOpaque(false);
 
   label1.setLocalColorScheme(GCScheme.YELLOW_SCHEME);

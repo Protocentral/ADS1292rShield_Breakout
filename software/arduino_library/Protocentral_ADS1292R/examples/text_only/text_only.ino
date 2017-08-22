@@ -125,6 +125,7 @@ volatile uint8_t global_RespirationRate = 0;
 long status_byte=0;
 uint8_t LeadStatus=0;
 boolean leadoff_deteted = true;
+long time_elapsed=0;
 
 void setup()
 {
@@ -138,6 +139,8 @@ void setup()
   Serial.begin(115200);  // Baudrate for serial communica
 
   ADS1292.ads1292_Init();  //initalize ADS1292 slave
+
+  Serial.println("Initiliziation is done");
 }
 
 void loop()
@@ -187,32 +190,20 @@ void loop()
     else
        ecg_filterout[0] = 0;
 
-    DataPacketHeader[0] = CES_CMDIF_PKT_START_1 ;   // Packet header1 :0x0A
-    DataPacketHeader[1] = CES_CMDIF_PKT_START_2;    // Packet header2 :0xFA
-    DataPacketHeader[2] = (uint8_t) (data_len);     // data length
-    DataPacketHeader[3] = (uint8_t) (data_len >> 8);
-    DataPacketHeader[4] = CES_CMDIF_TYPE_DATA;      // packet type: 0x02 -data 0x01 -commmand
 
-    DataPacketHeader[5] = ecg_filterout[0];
-    DataPacketHeader[6] = ecg_filterout[0] >> 8;
-    
-    DataPacketHeader[7] = s32DaqVals[0];            // 4 bytes ECG data
-    DataPacketHeader[8] = s32DaqVals[0] >> 8;
-    DataPacketHeader[9] = s32DaqVals[0] >> 16;
-    DataPacketHeader[10] = s32DaqVals[0] >> 24;
-
-    if(leadoff_deteted == true) // lead in not connected
-      DataPacketHeader[11] = 0 ; 
-    else
-      DataPacketHeader[11] = global_HeartRate ; 
-
-    DataPacketHeader[12] = CES_CMDIF_PKT_STOP_1;   // Packet footer1:0x00
-    DataPacketHeader[13] = CES_CMDIF_PKT_STOP_2 ;   // Packet footer2:0x0B
-
-    for (i = 0; i < 14; i++)
+    if(millis() > time_elapsed)  // update every one second
     {
-      Serial.write(DataPacketHeader[i]);     // transmit the data over USB
+      if(leadoff_deteted == true) // lead in not connected
+      Serial.println("ECG lead error!!! ensure the leads are properly connected");
+      else
+      {
+        Serial.print("Heart rate: ");
+        Serial.print(global_HeartRate);
+        Serial.println("BPM");
+      }
+      time_elapsed += 1000;
     }
+    
   }
 
   ads1292dataReceived = false;
