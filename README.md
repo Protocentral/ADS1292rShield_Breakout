@@ -1,11 +1,11 @@
 ProtoCentral ADS1292R ECG/respiration shield and breakout board 
 ================================
 
-[![ECG](https://www.protocentral.com/3059-large_default/ads1292r-ecgrespiration-shield-v2.jpg)  
-Dont have it yet? Buy one here: ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)](https://www.protocentral.com/arduino-shields/818-ads1292r-ecgrespiration-shield-v2.html)
+[![ECG](docs/img/ads1292r_shield.jpg)
+Dont have it yet? Buy one here: ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)](https://protocentral.com/product/ads1292r-ecg-respiration-shield-for-arduino-v2/)
 
-[![bob](docs/img/ads1292r_breakout.jpg)  
-Dont have it yet? But one here: ADS1292R ECG/Respiration Breakout for Arduino- v3 (PC-4116)](https://www.protocentral.com/analog-adc-boards/783-ads1292r-ecgrespiration-breakout-board.html?search_query=ecg&results=4)
+[![bob](docs/img/ads1292r_breakout.jpg)
+Dont have it yet? But one here: ADS1292R ECG/Respiration Breakout for Arduino- v3 (PC-4116)]https://protocentral.com/product/ads1292r-ecg-respiration-breakout-kit/)
 
 Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. 
 
