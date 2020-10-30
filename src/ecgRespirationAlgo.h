@@ -25,12 +25,15 @@ class ecg_respiration_algorithm
     void ECG_FilterProcess(int16_t * WorkingBuff, int16_t * CoeffBuf, int16_t* FilterOut);
     void ECG_ProcessCurrSample(int16_t *CurrAqsSample, int16_t *FilteredOut);
     void QRS_Algorithm_Interface(int16_t CurrSample,volatile uint8_t *Heart_rate);
-    void QRS_process_buffer(volatile uint8_t *Heart_rate);
-    void QRS_check_sample_crossing_threshold( uint16_t scaled_result,volatile uint8_t *Heart_rate);    
     void Resp_FilterProcess(int16_t * RESP_WorkingBuff, int16_t * CoeffBuf, int16_t* FilterOut);
     int16_t Resp_ProcessCurrSample(int16_t CurrAqsSample);
     void RESP_Algorithm_Interface(int16_t CurrSample,volatile uint8_t *RespirationRate);
+    
+  private:
+    void QRS_process_buffer(volatile uint8_t *Heart_rate)
+    void QRS_check_sample_crossing_threshold( uint16_t scaled_result,volatile uint8_t *Heart_rate);
     void Respiration_Rate_Detection(int16_t Resp_wave,volatile uint8_t *RespirationRate);
+
 };
 
 #endif
