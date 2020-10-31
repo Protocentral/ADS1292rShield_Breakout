@@ -40,10 +40,10 @@ volatile uint8_t global_HeartRate = 0;
 volatile uint8_t global_RespirationRate=0;
 
 //Pin declartion the other you need are controlled by the SPI library
-const int ADS1292_DRDY_PIN = 26;//26 Healthypi//26 Kalam
-const int ADS1292_CS_PIN = 13;//13 Healthypi//17Kalam
-const int ADS1292_START_PIN = 14;//14 Healthypi//16 Kalam
-const int ADS1292_PWDN_PIN = 27;//27 Healthypi//2 Kalam
+const int ADS1292_DRDY_PIN = 6;
+const int ADS1292_CS_PIN = 7;
+const int ADS1292_START_PIN = 5;
+const int ADS1292_PWDN_PIN = 4;
 
 uint8_t DataPacketHeader[30];
 uint8_t data_len = 20;
@@ -56,22 +56,22 @@ ecg_respiration_algorithm ECG_RESPIRATION_ALGORITHM; // define class ecg_algorit
 
 void setup()
 {
-  delay(2000);  // initalize the  data ready and chip select pins:
+  delay(2000);
 
   SPI.begin();
-  
   SPI.setBitOrder(MSBFIRST); 
   //CPOL = 0, CPHA = 1
   SPI.setDataMode(SPI_MODE1);
   // Selecting 1Mhz clock for SPI
   SPI.setClockDivider(SPI_CLOCK_DIV16);
   
-  pinMode(ADS1292_DRDY_PIN, INPUT);  //6
-  pinMode(ADS1292_CS_PIN, OUTPUT);    //7
-  pinMode(ADS1292_START_PIN, OUTPUT);  //5
-  pinMode(ADS1292_PWDN_PIN, OUTPUT);  //4
-  Serial.begin(115200);  // Baudrate for serial communica
-  ADS1292R.ads1292_Init(ADS1292_CS_PIN,ADS1292_PWDN_PIN,ADS1292_START_PIN);  //initalize ADS1292 slave
+  pinMode(ADS1292_DRDY_PIN, INPUT);
+  pinMode(ADS1292_CS_PIN, OUTPUT);
+  pinMode(ADS1292_START_PIN, OUTPUT);
+  pinMode(ADS1292_PWDN_PIN, OUTPUT);
+
+  Serial.begin(115200); 
+  ADS1292R.ads1292_Init(ADS1292_CS_PIN,ADS1292_PWDN_PIN,ADS1292_START_PIN);
   Serial.println("Initiliziation is done");
 }
 
@@ -89,8 +89,8 @@ void loop()
     {
       ECG_RESPIRATION_ALGORITHM.ECG_ProcessCurrSample(&ecg_wave_buff, &ecg_filterout);   // filter out the line noise @40Hz cutoff 161 order
       ECG_RESPIRATION_ALGORITHM.QRS_Algorithm_Interface(ecg_filterout,&global_HeartRate); // calculate
-      resp_filterout = ECG_RESPIRATION_ALGORITHM.Resp_ProcessCurrSample(res_wave_buff); 
-      ECG_RESPIRATION_ALGORITHM.RESP_Algorithm_Interface(resp_filterout,&global_RespirationRate);
+      //resp_filterout = ECG_RESPIRATION_ALGORITHM.Resp_ProcessCurrSample(res_wave_buff); 
+      //ECG_RESPIRATION_ALGORITHM.RESP_Algorithm_Interface(resp_filterout,&global_RespirationRate);
     
     }else{
       ecg_filterout = 0;
@@ -104,8 +104,8 @@ void loop()
     DataPacketHeader[4] = CES_CMDIF_TYPE_DATA;      // packet type: 0x02 -data 0x01 -commmand
     DataPacketHeader[5] = ecg_filterout;
     DataPacketHeader[6] = ecg_filterout >> 8;
-    DataPacketHeader[7] = resp_filterout;
-    DataPacketHeader[8] = resp_filterout >> 8;
+    DataPacketHeader[7] = res_wave_buff;
+    DataPacketHeader[8] = res_wave_buff >> 8;
 
     DataPacketHeader[19] = global_RespirationRate; 
     DataPacketHeader[21] = global_HeartRate;
