@@ -1,15 +1,16 @@
 ProtoCentral ADS1292R ECG/respiration shield and breakout board 
 ================================
 
-[![ECG](https://www.protocentral.com/3059-large_default/ads1292r-ecgrespiration-shield-v2.jpg)  
-Dont have it yet? But one here: ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)](https://www.protocentral.com/arduino-shields/818-ads1292r-ecgrespiration-shield-v2.html)
+[![ECG](docs/img/ads1292r_shield.jpg)  
+Dont have it yet? But one here: ADS1292R ECG/Respiration Shield for Arduino- v2 (PC-4128)](https://protocentral.com/product/ads1292r-ecg-respiration-shield-for-arduino-v2/)
 
 [![bob](docs/img/ads1292r_breakout.jpg)  
-Dont have it yet? But one here: ADS1292R ECG/Respiration Breakout for Arduino- v3 (PC-4116)](https://www.protocentral.com/analog-adc-boards/783-ads1292r-ecgrespiration-breakout-board.html?search_query=ecg&results=4)
+Dont have it yet? But one here: ADS1292R ECG/Respiration Breakout for Arduino- v3 (PC-4116)](https://protocentral.com/product/ads1292r-ecg-respiration-breakout-kit/)
 
-Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. 
+The Arduino library for this product is now available in the **[ProtoCentral ADS1292R Arduino Library repo](https://github.com/Protocentral/protocentral-ads1292r-arduino)**
 
-We now include the electrodes and cable also with the shield
+Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. We now include the electrodes and cable also with the shield
+
 Just plug it into an Arduino and you're ready to go. The 3.5 mm circular connector provides an easy way to connect electodes to the shield. The other end of this cable has snaps for standard ECG electrodes. We also include a pakc of 10 disposable EG electrodes. It accepts two ECG electrodes and one Driven Right Leg (DRL) electrode for common mode noise reduction. 
 
 Another interesting feature of this shield is that you can also measure the respiratory activity using the same two electrodes connected to the shield. The ADS1292R uses a method known as impedance pneumography to measure respiration using the changes in chest impedance caused during respiration. 
@@ -28,11 +29,7 @@ Includes:
 * Electrode cable with 3.5mm connector and ECG electrodes connectors
 * Pack of 10 disposable stick-on ECG electrodes.
 
-Repository Contents
--------------------
-* **/Libraries** - Arduino library and example sketches.
-* **/Hardware** - All Eagle design files (.brd, .sch)
-* **/extras** - includes the datasheet
+
 
 Connecting the shield to your Arduino
 -------------------------------------
