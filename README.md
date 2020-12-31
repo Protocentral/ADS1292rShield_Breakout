@@ -29,13 +29,9 @@ Includes:
 * Electrode cable with 3.5mm connector and ECG electrodes connectors
 * Pack of 10 disposable stick-on ECG electrodes.
 
-
-
 Connecting the shield to your Arduino
 -------------------------------------
 Connect the ECG/Respiration shield to the Arduino by stacking it on top of your Arduino. This shield uses the SPI interface  to communicate with the Arduino. Since this includes the ICSP header, which is used on newer Arduinos for SPI communication,  this shield is also compatible newer Arduino boards such as the Arduino Yun and Due.
- 
-
  
 Wiring the Breakout to your Arduino
 ------------------------------------
@@ -55,13 +51,12 @@ Wiring the Breakout to your Arduino
  
 Installing the Arduino libraries 
 ---------------------------------
-If you have correctly installed the libraries, the example sketeches should now be available from within Arduino.
+Arduino library for this boards is now available at https://github.com/Protocentral/protocentral-ads1292r-arduino or from the Arduino Library Manager inside the Arduino IDe. 
 
-[Download the latest Arduino Sketch here for this board here.](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/Protocentral_ADS1292R-v1.0-arduino.zip)
+If you have correctly installed the libraries, the example sketeches should now be available from within Arduino at File-->Examples-->ProtoCentral ADS1292R library.
 
-Open up your Arduino IDE and run the Arudino sketch (.ino) file in the archive that you downloaded. Your Arduino should now be programmed to read the ecg data and sending over the USB-UART.  
  
-Using the ProtoCentral ECG/Resp. GUI
+Using the ProtoCentral OpenView GUI
 -----------------------------------
 
 The GUI for visulizing the ECG and Respiration as well as parameters like Heart rate and Respiration rate is written in Processing, based on Java and is cross-compilable across platforms. 
@@ -70,23 +65,7 @@ Java 8 is required on all platforms for running the processing-based GUI applica
 
 [https://java.com/en/download/](https://java.com/en/download/)
 
-### Processing GUI Installation
-
-Download the zip file containing the executable files from the following links for 32-bit/64-bit Windows. If you do not know if you have a 64-bit or 32-bit computer, please download the 32-bit version.
-
-* [Windows 32-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-win32.zip)
-* [Windows 64-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-win64.zip)
-* [MacOS Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-macos.zip)
-* [Linux 32-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-linux32.zip)
-* [Linux 64-bit Executable (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-linux64.zip)
-* [Raspberry Pi - Raspbian (ZIP)](https://github.com/Protocentral/ADS1292rShield_Breakout/releases/download/v1.0/protocentral_ads1292r_gui-v1.0-rpi.zip)
-
-Simply download the appropriate file for your operating system, unzip the contents and run the executable program contained in it. 
-
-Select the port to which your Arduino is connected to from the "Select Port" dropdown box and data should immedaitely start coming in.
-
-
-![ProtoCentral ads1292r_Shield/breakout](docs/img/ecg_plot.gif)
+You can download and install [ProtoCentral OpenView](https://github.com/Protocentral/protocentral_openview) from here: https://github.com/Protocentral/protocentral_openview
 
 Connecting the ECG Electrodes
 ------------------------------
