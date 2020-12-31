@@ -59,11 +59,9 @@ If you have correctly installed the libraries, the example sketeches should now 
 Using the ProtoCentral OpenView GUI
 -----------------------------------
 
-The GUI for visulizing the ECG and Respiration as well as parameters like Heart rate and Respiration rate is written in Processing, based on Java and is cross-compilable across platforms. 
+The GUI for visualizing the ECG and Respiration as well as parameters like Heart rate and Respiration rate is written in Processing, based on Java and is cross-compilable across platforms. 
  
-Java 8 is required on all platforms for running the processing-based GUI application. You can download Java for your platform from the following link.
-
-[https://java.com/en/download/](https://java.com/en/download/)
+Java 8 is required on all platforms for running the processing-based GUI application. You can download Java for your platform from the [Official Java website](https://java.com/en/download/).
 
 You can download and install [ProtoCentral OpenView](https://github.com/Protocentral/protocentral_openview) from here: https://github.com/Protocentral/protocentral_openview
 
