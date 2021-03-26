@@ -81,10 +81,13 @@ Placing the Electrodes on the body
 
 License Information
 ===================
+This product is open source! 
 
-![License](license_mark.svg) ![OSHW Certified](17.svg)
+![OSHW Certified](17.svg)
 
-This product is open source! Both, our hardware and software are open source and licensed under the following licenses:
+Both, our hardware and software are open source and licensed under the following licenses:
+
+![License](license_mark.svg) 
 
 Hardware
 ---------
