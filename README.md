@@ -9,6 +9,8 @@ Dont have it yet? But one here: ADS1292R ECG/Respiration Breakout for Arduino- v
 
 The Arduino library for this product is now available in the **[ProtoCentral ADS1292R Arduino Library repo](https://github.com/Protocentral/protocentral-ads1292r-arduino)**
 
+**Breakout v4:** KiCad design files and the schematic PDF are in [`hardware/breakout/v4`](hardware/breakout/v4). v4 has a new 10-pin host header (CS, MOSI, SCK, MISO, DRDY, START, RST, CLK, VCC, GND) with the ADS1292R clock brought out, so the pinout below applies to v3 only. Earlier revisions remain in `hardware/breakout` and `hardware/shield`.
+
 Easily monitor ECG and respiration using your Arduino with this plug-in shield. The version 2 of this product adds a new SPI pin header making it compatible with newer Arduino devices including the Arduino Yun and 3.5mm connector for the electrodes. We now include the electrodes and cable also with the shield
 
 Just plug it into an Arduino and you're ready to go. The 3.5 mm circular connector provides an easy way to connect electodes to the shield. The other end of this cable has snaps for standard ECG electrodes. We also include a pakc of 10 disposable EG electrodes. It accepts two ECG electrodes and one Driven Right Leg (DRL) electrode for common mode noise reduction. 
